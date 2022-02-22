@@ -1,5 +1,5 @@
 # GitHub Finder
-#### React app to search Github profiles
+### React app to search Github profiles
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
