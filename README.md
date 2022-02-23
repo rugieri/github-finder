@@ -1,6 +1,7 @@
 # GitHub Finder
 ### React app to search Github profiles
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).</br>
+Custom users interface built with [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) and [daisyUI](https://github.com/saadeghi/daisyui) 
 
 ## Available Scripts
 
