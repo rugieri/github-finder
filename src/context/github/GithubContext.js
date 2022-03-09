@@ -67,6 +67,7 @@ export const GithubProvider = ({ children }) => {
         users: state.users,
         loading: state.loading,
         user: state.user,
+        repo: state.repo,
         searchUsers,
         clearUsers,
         getUser,
