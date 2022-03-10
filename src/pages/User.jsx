@@ -4,16 +4,22 @@ import { useParams, Link } from 'react-router-dom';
 import Spinner from '../components/layout/Spinner';
 import RepoList from '../components/repos/RepoList';
 import GithubContext from '../context/github/GithubContext';
+import { getUserAndRepos } from '../context/github/GithubActions';
 
 function User() {
-  const { getUser, user, loading, getUserRepos, repos } =
-    useContext(GithubContext);
+  const { user, loading, repos, dispatch } = useContext(GithubContext);
 
   const params = useParams();
+
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
-  }, []);
+    dispatch({ type: 'SET_LOADING' });
+    const getUserData = async () => {
+      const userData = await getUserAndRepos(params.login);
+      dispatch({ type: 'GET_USER_AND_REPOS', payload: userData });
+    };
+
+    getUserData();
+  }, [dispatch, params.login]);
 
   const {
     name,
@@ -35,8 +41,6 @@ function User() {
   if (loading) {
     return <Spinner />;
   }
-
-  // NOTE: check for valid url to users website
 
   const websiteUrl = blog?.startsWith('http') ? blog : 'https://' + blog;
 
@@ -61,6 +65,7 @@ function User() {
               </div>
             </div>
           </div>
+
           <div className="col-span-2">
             <div className="mb-6">
               <h1 className="text-3xl card-title">
@@ -82,6 +87,7 @@ function User() {
                 </a>
               </div>
             </div>
+
             <div className="w-full rounded-lg shadow-md bg-base-100 stats">
               {location && (
                 <div className="stat">
@@ -160,6 +166,7 @@ function User() {
             </div>
           </div>
         </div>
+
         <RepoList repos={repos} />
       </div>
     </>
